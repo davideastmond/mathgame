@@ -22,9 +22,9 @@ class Game
   
   def docPlayer(player) 
     # This method subtracks a life from a player after having guessed incorrectly
-    player.lives--
-
+    player.lives -= 1
   end
+
   def doGuess(currentPlayer, actualGuess, correctAnswer)
     if actualGuess == correctAnswer
       puts "#{currentPlayer.name}, correct!"
@@ -39,7 +39,7 @@ class Game
     
   end
   def showScore
-    puts "P1: #{@p1.lives} / 3 P2 #{@p2.lives} / 3"
+    puts "P1: #{@p1.lives}/3  P2: #{@p2.lives}/3"
   end
   def gameDone?
     
@@ -52,7 +52,7 @@ class Game
       currentQuestion = Math_Question.new
       puts "#{@currentTurn.name} : #{currentQuestion.caption}"
       response = gets.chomp.to_i
-      doGuess(@currentPlayer, response, currentQuestion.answer)
+      doGuess(@currentTurn, response, currentQuestion.answer)
     end
   end
 
