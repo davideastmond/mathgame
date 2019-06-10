@@ -1,7 +1,7 @@
 # Math question that is generated for players to guess. When the
 # math question is generated, it auto picks the addends and stuff
 # and calculates its answer
-class Math_Question
+class MathQuestion
   attr_reader :caption 
   attr_reader :answer
   

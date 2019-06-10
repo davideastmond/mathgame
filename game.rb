@@ -7,45 +7,67 @@ class Game
   def initialize(p1, p2)
     @p1 = p1
     @p2 = p2
-    @gameIsOn = false
-    @currentTurn = @p1
+    @game_is_on = false
+    @current_turn = @p1
   end
 
+  def start
+    # start the game loop
+    @game_is_on = true
+    while @game_is_on
+      # Create a math question and prompt the current turn player for input
+      current_question = MathQuestion.new
+      puts "#{@current_turn.name} : #{current_question.caption}"
+      response = gets.chomp.to_i
+      do_guess(@current_turn, response, current_question.answer)
+      if !game_done?
+        show_score
+        switch_turn
+      else
+        show_score
+        stop
+        puts "--- GAME OVER ----"
+        break
+      end
+    end
+  end
+
+  private
   # This function alternates the player's turn when called
-  def switchTurn
-    if @currentTurn == @p1
-      @currentTurn = @p2
-    elsif @currentTurn == @p2
-      @currentTurn = @p1
+  def switch_turn
+    if @current_turn == @p1
+      @current_turn = @p2
+    elsif @current_turn == @p2
+      @current_turn = @p1
     end 
   end
   
-  def docPlayer(player) 
+  def doc_player(player) 
     # This method subtracks a life from a player after having guessed incorrectly
     player.lives -= 1
   end
 
   # Handles the guessing of each player and subtracts a life for any incorrect repsonse
-  def doGuess(currentPlayer, actualGuess, correctAnswer)
-    if actualGuess == correctAnswer
-      puts "#{currentPlayer.name}, correct!"
+  def do_guess(current_player, actualGuess, correct_answer)
+    if actualGuess == correct_answer
+      puts "#{current_player.name}, correct!"
       puts ""
      else 
-      puts "#{currentPlayer.name} Wrong response!"
+      puts "#{current_player.name} Wrong response!"
       puts ""
-      docPlayer(currentPlayer)
+      doc_player(current_player)
     end 
     
   end
-
+  
   # Simply shows the scoreboard
-  def showScore
+  def show_score
     puts "P1: #{@p1.lives}/3  P2: #{@p2.lives}/3"
   end
 
   # Evaluates the status of game and displays a final message. If this function
   # returns true, the game will end
-  def gameDone?
+  def game_done?
     if @p1.lives <= 0
       puts "Player 2 wins with a score of #{@p2.lives}/3"
       return true
@@ -56,28 +78,7 @@ class Game
     return false
   end
 
-  def start
-    # start the game loop
-    @gameIsOn = true
-    while @gameIsOn
-      # Create a math question and prompt the current turn player for input
-      currentQuestion = Math_Question.new
-      puts "#{@currentTurn.name} : #{currentQuestion.caption}"
-      response = gets.chomp.to_i
-      doGuess(@currentTurn, response, currentQuestion.answer)
-      if !gameDone?
-        showScore
-        switchTurn
-      else
-        showScore
-        stop
-        puts "--- GAME OVER ----"
-        break
-      end
-    end
-  end
-
   def stop
-    @gameIsOn = false
+    @game_is_on = false
   end
 end
