@@ -1,5 +1,15 @@
 require './question'
+require './player'
 
-testQuestion = Math_Question.new()
-puts testQuestion.answer
-puts testQuestion.caption
+class Game
+  def initialize(p1, p2)
+    @p1 = p1
+    @p2 = p2
+  end
+
+  def start
+  end
+
+  def stop
+  end
+end
