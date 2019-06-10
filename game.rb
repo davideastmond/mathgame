@@ -38,12 +38,22 @@ class Game
     end 
     
   end
+
   def showScore
     puts "P1: #{@p1.lives}/3  P2: #{@p2.lives}/3"
   end
+
   def gameDone?
-    
+    if @p1.lives <= 0
+      puts "Player 2 wins with a score of #{@p2.lives}/3"
+      return true
+    elsif @p2.lives <= 0
+      puts "Player 1 wins with a score of #{@p1.lives}/3"
+      return true
+    end
+    return false
   end
+  
   def start
     # start the game loop
     @gameIsOn = true
