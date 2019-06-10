@@ -7,15 +7,31 @@ class Game
   def initialize(p1, p2)
     @p1 = p1
     @p2 = p2
+    @gameIsOn = false
+    @currentTurn = @p1
+  end
+
+  def switchTurn
+    if @currentTurn == @p1
+      @currentTurn = @p2
+    elsif @currentTurn == @p2
+      @currentTurn = @p1
+    end 
   end
 
   def start
     # start the game loop
-    while @p1.lives > 0 && @p2.lives > 0
-      puts "loop has started"
+    @gameIsOn = true
+    while @gameIsOn
+      # Create a math Question and prompt the current turn player
+      currentQuestion = Math_Question.new
+      puts "#{@currentTurn.name} : #{currentQuestion.caption}"
+      response = gets.chomp
+
     end
   end
 
   def stop
+    @gameIsOn = false
   end
 end
