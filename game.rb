@@ -25,6 +25,7 @@ class Game
     player.lives -= 1
   end
 
+  # Handles the guessing of each player and subtracts a life for any incorrect repsonse
   def doGuess(currentPlayer, actualGuess, correctAnswer)
     if actualGuess == correctAnswer
       puts "#{currentPlayer.name}, correct!"
@@ -37,10 +38,13 @@ class Game
     
   end
 
+  # Simply shows the scoreboard
   def showScore
     puts "P1: #{@p1.lives}/3  P2: #{@p2.lives}/3"
   end
 
+  # Evaluates the status of game and displays a final message. If this function
+  # returns true, the game will end
   def gameDone?
     if @p1.lives <= 0
       puts "Player 2 wins with a score of #{@p2.lives}/3"
@@ -56,7 +60,7 @@ class Game
     # start the game loop
     @gameIsOn = true
     while @gameIsOn
-      # Create a math question and prompt the current turn player
+      # Create a math question and prompt the current turn player for input
       currentQuestion = Math_Question.new
       puts "#{@currentTurn.name} : #{currentQuestion.caption}"
       response = gets.chomp.to_i
