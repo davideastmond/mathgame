@@ -28,8 +28,10 @@ class Game
   def doGuess(currentPlayer, actualGuess, correctAnswer)
     if actualGuess == correctAnswer
       puts "#{currentPlayer.name}, correct!"
+      puts ""
      else 
       puts "#{currentPlayer.name} Wrong response!"
+      puts ""
       docPlayer(currentPlayer)
     end 
     
@@ -54,7 +56,7 @@ class Game
     # start the game loop
     @gameIsOn = true
     while @gameIsOn
-      # Create a math Question and prompt the current turn player
+      # Create a math question and prompt the current turn player
       currentQuestion = Math_Question.new
       puts "#{@currentTurn.name} : #{currentQuestion.caption}"
       response = gets.chomp.to_i
