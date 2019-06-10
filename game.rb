@@ -22,15 +22,18 @@ class Game
   
   def docPlayer(player) 
     # This method subtracks a life from a player after having guessed incorrectly
-    
+    player.lives--
+
   end
   def doGuess(currentPlayer, actualGuess, correctAnswer)
     if actualGuess == correctAnswer
-      puts "#{currentPlayer}, correct!"
+      puts "#{currentPlayer.name}, correct!"
+      showScore
       switchTurn
      else 
-      puts "#{currentPlayer} Wrong response!"
-      currentPlayer.lives--
+      puts "#{currentPlayer.name} Wrong response!"
+      docPlayer(currentPlayer)
+      showScore 
       switchTurn
     end 
     
