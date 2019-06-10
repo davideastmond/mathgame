@@ -4,6 +4,7 @@
 class Math_Question
   attr_reader :caption 
   attr_reader :answer
+  
   def initialize()
     @num1 = rand 1..20
     @num2 = rand 1..30
