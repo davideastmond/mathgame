@@ -28,13 +28,9 @@ class Game
   def doGuess(currentPlayer, actualGuess, correctAnswer)
     if actualGuess == correctAnswer
       puts "#{currentPlayer.name}, correct!"
-      showScore
-      switchTurn
      else 
       puts "#{currentPlayer.name} Wrong response!"
       docPlayer(currentPlayer)
-      showScore 
-      switchTurn
     end 
     
   end
@@ -53,7 +49,7 @@ class Game
     end
     return false
   end
-  
+
   def start
     # start the game loop
     @gameIsOn = true
@@ -63,6 +59,15 @@ class Game
       puts "#{@currentTurn.name} : #{currentQuestion.caption}"
       response = gets.chomp.to_i
       doGuess(@currentTurn, response, currentQuestion.answer)
+      if !gameDone?
+        showScore
+        switchTurn
+      else
+        showScore
+        stop
+        puts "--- GAME OVER ----"
+        break
+      end
     end
   end
 

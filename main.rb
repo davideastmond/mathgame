@@ -6,7 +6,6 @@ require './question'
 P1 = Player.new("Player 1")
 P2 = Player.new("Player 2")
 
-# Create the game
+# Create the game and start it
 game = Game.new(P1, P2)
-
 game.start
