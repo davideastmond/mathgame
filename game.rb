@@ -44,7 +44,7 @@ class Game
   end
   
   def doc_player(player) 
-    # This method subtracks a life from a player after having guessed incorrectly
+    # This method subtracts a life from a player after having guessed incorrectly
     player.lives -= 1
   end
 
@@ -57,8 +57,7 @@ class Game
       puts "#{current_player.name} Wrong response!"
       puts ""
       doc_player(current_player)
-    end 
-    
+    end
   end
   
   # Simply shows the scoreboard
@@ -76,6 +75,7 @@ class Game
       puts "Player 1 wins with a score of #{@p1.lives}/3"
       return true
     end
+    
     return false
   end
 
